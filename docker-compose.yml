@@ -1,0 +1,20 @@
+app:
+  build: .
+  command: bash -c "/usr/sbin/apache2ctl -D FOREGROUND"
+  ports: 
+    - "8080:80"
+  links: 
+    - database
+  volumes:
+    - .:/var/www/fcizuportal
+
+database:
+  image: mysql
+  ports: 
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: fcizuportal
+    MYSQL_USER: zeinabsamir
+    MYSQL_PASSWORD: 12345sql
+
