@@ -1,0 +1,11 @@
+.form-box {
+  background: $white;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 40px 0;
+  padding: 40px 20px 0 20px;
+}
+
+.form-element {
+	margin-bottom: 30px;
+}

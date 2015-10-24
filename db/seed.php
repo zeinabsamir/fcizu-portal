@@ -2,7 +2,7 @@
 require_once "database.php";
 
 // users
-$query = "INSERT INTO users (email, first_name, last_name, password, role, is_admin, created_at)
+$query = "INSERT INTO users (email, first_name, last_name, password, user_role, is_admin, created_at)
           VALUES ('kathrin.meier@fci.zu.edu.eg', 'Kathrin', 'Meier', '12345678', 'student', '0', now())";
 
 if(mysql_query($query, $connection)) {
