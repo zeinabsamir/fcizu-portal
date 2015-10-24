@@ -3,11 +3,11 @@ if(isset($_POST['registerSubmit'])) {
   session_start();
   require_once('../db/database.php');
 
-	$email = mysql_real_escape_string($_POST['email']);
-	$password = mysql_real_escape_string($_POST['password']);
-	$firstName = mysql_real_escape_string($_POST['firstName']);
-	$lastName = mysql_real_escape_string($_POST['lastName']);
-	$userRole = mysql_real_escape_string($_POST['userRole']);
+  $email = mysql_real_escape_string($_POST['email']);
+  $password = mysql_real_escape_string($_POST['password']);
+  $firstName = mysql_real_escape_string($_POST['firstName']);
+  $lastName = mysql_real_escape_string($_POST['lastName']);
+  $userRole = mysql_real_escape_string($_POST['userRole']);
 
   $query = "INSERT INTO users (email, password, first_name, last_name, user_role, created_at)
             VALUES ('$email', '$password', '$firstName', '$lastName', '$userRole', now())";
