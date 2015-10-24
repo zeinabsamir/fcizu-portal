@@ -1,16 +1,16 @@
 <?php
 if(isset($_POST['registerSubmit'])) {
-  include_once('../partials/header.php');
+  session_start();
   require_once('../db/database.php');
 
 	$email = mysql_real_escape_string($_POST['email']);
 	$password = mysql_real_escape_string($_POST['password']);
-	$first_name = mysql_real_escape_string($_POST['firstName']);
-	$last_name = mysql_real_escape_string($_POST['lastName']);
-	$role = mysql_real_escape_string($_POST['role']);
+	$firstName = mysql_real_escape_string($_POST['firstName']);
+	$lastName = mysql_real_escape_string($_POST['lastName']);
+	$userRole = mysql_real_escape_string($_POST['userRole']);
 
   $query = "INSERT INTO users (email, password, first_name, last_name, user_role, created_at)
-            VALUES ('$email', '$password', '$first_name', '$last_name', '$role', now())";
+            VALUES ('$email', '$password', '$firstName', '$lastName', '$userRole', now())";
 
   if(mysql_query($query, $connection)) {
     $_SESSION['notice'] = "User Registered successfully.";
@@ -73,7 +73,7 @@ if(isset($_POST['registerSubmit'])) {
                     <input type="radio" name="role" value="student" checked> Student
                   </label>
                   <label class="btn btn-default">
-                    <input type="radio" name="role" value="staff"> Staff/TA
+                    <input type="radio" name="userRole" value="staff"> Staff/TA
                   </label>
                 </div>
               </div>
