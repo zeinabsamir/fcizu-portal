@@ -1,0 +1,19 @@
+- As a user I should be able to sign up as a student, or instructor/staff (email, password, first name, last name, date of birth, faculty, enrolled at).
+- As a user I should be able to login as a student, or instructor/staff admin using my email, and password.
+- As a user I should be able to logout.
+
+=== Instructor users ===
+- As an instructor user I should be able to fill in students attendance (course_id, student_id, teacher_id, has_attende, day, created_at) for each of my courses.
+- As an instructor I should be able to create new courses (title, code, faculty, department, created_at).
+- As an instructor I should be able to subscribe to my courses (course_id, teacher_id, year, semester).
+- As an instructor I shoule be able to create new announcements on my courses (announcement, course, teacher, date).
+- As an instructor I shoule be able to add student grades for each of my courses (course, student, task/exam name, grade).
+- As an instructor I shoule be able to add study materials for each of my courses (course_id, teacher_id, file path, description, date).
+
+=== Student users ===
+- As a student I should be able to check my attendence in each course sorted by date.
+- As a student I should be able to subscribe to my courses (course_id, student_id, year, semester).
+- As a student I should be able to check announcement on each of my subscribed courses.
+- As a student I should be able to check my grades on each of my subscribed courses.
+- As a student I should be able to view my cumulative GPA (student, gpa).
+- As a student I should be able to view/download study materials for each of my subscribed courses.
