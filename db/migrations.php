@@ -160,4 +160,21 @@ if (mysql_query($create_course_materials_table_query)) {
 } else {
     echo "course_materials table error: ".mysql_error()."\n";
 }
+
+// course_assignments table
+$create_course_assignments_table_query = "CREATE TABLE course_assignments (
+                        id INT(11) NOT NULL AUTO_INCREMENT,
+                        course_id INT(11) NOT NULL,
+                        student_id INT(11) NOT NULL,
+                        file_url VARCHAR(255),
+                        type VARCHAR(150) NOT NULL,
+                        created_at DATETIME NOT NULL,
+                        PRIMARY KEY (id)
+                        )";
+
+if (mysql_query($create_course_assignments_table_query)) {
+  echo "course_assignments table was created.\n";
+} else {
+    echo "course_assignments table error: ".mysql_error()."\n";
+}
 ?>
