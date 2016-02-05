@@ -2,28 +2,28 @@
   class User {
     public $id;
     public $email;
-    public $first_name;
-    public $last_name;
     public $password;
+    public $firstName;
+    public $lastName;
     public $faculty;
-    public $date_of_birth;
-    public $user_role;
-    public $is_admin;
-    public $created_at;
+    public $dateOfBirth;
+    public $userRole;
+    public $isAdmin;
+    public $createdAt;
 
-    public function __construct($id, $email, $password, $first_name, $last_name,
-                                $faculty, $date_of_birth, $user_role, $is_admin,
-                                $created_at) {
+    public function __construct($id, $email, $password, $firstName, $lastName,
+                                $faculty, $dateOfBirth, $userRole, $isAdmin,
+                                $createdAt) {
       $this->id = $id;
       $this->email = $email;
       $this->password = $password;
-      $this->first_name = $first_name;
-      $this->last_name = $last_name;
+      $this->firstName = $firstName;
+      $this->lastName = $lastName;
       $this->faculty = $faculty;
-      $this->date_of_birth = $date_of_birth;
-      $this->user_role = $user_role;
-      $this->is_admin = $is_admin;
-      $this->created_at = $created_at;
+      $this->dateOfBirth = $dateOfBirth;
+      $this->userRole = $userRole;
+      $this->isAdmin = $isAdmin;
+      $this->createdAt = $createdAt;
     }
 
     public static function all() {
@@ -55,19 +55,19 @@
                             $user['created_at']);
     }
 
-    public static function create($email, $password, $first_name, $last_name,
+    public static function create($email, $password, $firstName, $lastName,
                                   $faculty, $dateOfBirth, $userRole) {
 
       // Sanitize date_of_birth to MySQL DATE format yyyy-mm-dd
       $dateOfBirth = date('Y-m-d', strtotime($dateOfBirth));
 
       $query = "INSERT INTO users (email, password, first_name, last_name, faculty, date_of_birth, user_role, created_at)
-                VALUES ('$email', '$password', '$first_name', '$last_name', '$faculty', '$dateOfBirth', '$userRole', now())";
+                VALUES ('$email', '$password', '$firstName', '$lastName', '$faculty', '$dateOfBirth', '$userRole', now())";
 
       if(mysql_query($query)) {
         return new User(null, $email, $password,
-                        $first_name, $last_name, $faculty,
-                        $date_of_birth, $user_role, null, null);
+                        $firstName, $lastName, $faculty,
+                        $dateOfBirth, $userRole, null, null);
       } else {
         $_SESSION['notice'] = "User error: ".mysql_error()."\n";
       }
