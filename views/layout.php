@@ -18,12 +18,12 @@
   <div class="row">
     <!-- SIDEBAR -->
     <div class="col-md-2" id="leftCol">
-      <?php 
+      <?php
         if($_SESSION['currentUserID']) {
-          require_once('views/partials/sidebar.php'); 
+          require_once('views/partials/sidebar.php');
         }
       ?>
-    </div> 
+    </div>
     <!-- SIDEBAR -->
 
     <!-- MAIN CONTENT -->
