@@ -1,11 +1,11 @@
 CREATE TABLE users (
                         id INT(11) NOT NULL AUTO_INCREMENT,
                         email VARCHAR(100) NOT NULL,
+                        password VARCHAR(24) NOT NULL,
                         first_name VARCHAR(100) NOT NULL,
                         last_name VARCHAR(100) NOT NULL,
-                        password VARCHAR(24) NOT NULL,
                         faculty VARCHAR(150) NOT NULL,
-                        date_of_birth DATETIME,
+                        date_of_birth DATE,
                         user_role VARCHAR(30) NOT NULL DEFAULT 'student',
                         is_admin TINYINT(1) DEFAULT 0,
                         created_at DATETIME NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE attendance (
                         student_id INT(11) NOT NULL,
                         teacher_id INT(11) NOT NULL,
                         has_attended TINYINT(1) DEFAULT 0,
-                        day DATETIME NOT NULL,
+                        day DATE NOT NULL,
                         created_at DATETIME NOT NULL,
                         PRIMARY KEY (id),
                         UNIQUE KEY course_student_day (course_id, student_id, day)
@@ -73,7 +73,7 @@ CREATE TABLE grades (
                         student_id INT(11) NOT NULL,
                         teacher_id INT(11) NOT NULL,
                         grade DECIMAL(7,2) NOT NULL DEFAULT 99999.99,
-                        type VARCHAR(150) NOT NULL,
+                        element_name VARCHAR(150) NOT NULL,
                         created_at DATETIME NOT NULL,
                         PRIMARY KEY (id)
                         );
@@ -101,7 +101,7 @@ CREATE TABLE course_assignments (
                         course_id INT(11) NOT NULL,
                         student_id INT(11) NOT NULL,
                         file_url VARCHAR(255),
-                        type VARCHAR(150) NOT NULL,
+                        element_name VARCHAR(150) NOT NULL,
                         created_at DATETIME NOT NULL,
                         PRIMARY KEY (id)
                         );
