@@ -73,6 +73,19 @@
       }
     }
 
+    public static function edit($user) {
+      $query = "UPDATE users SET email='$user->email', password='$user->password',
+                first_name='$user->firstName', last_name='$user->lastName',
+                faculty='$user->faculty', date_of_birth='$user->dateOfBirth',
+                user_role='$user->userRole' WHERE id='$user->id'";
+
+      if(mysql_query($query)){
+        return true;
+      } else {
+        echo "error".mysql_error()."\n";
+      }
+    }
+
     public static function authenticate($email, $password) {
       $query = "SELECT * FROM users WHERE email='$email' AND password='$password' LIMIT 1";
       $result = mysql_query($query);

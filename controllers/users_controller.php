@@ -25,12 +25,48 @@
         $password = $_POST['password'];
 
         if($user = User::authenticate($email, $password)) {
+          $_SESSION['currentUserID'] = $user->id;
+          $_SESSION['currentUserRole'] = $user->user_role;
+
+          if($user->is_admin == 1) {
+            $_SESSION['currentUserIsAdmin'] = $user->is_admin;
+          }
+
           // Redirect the user to home(index) page
           header('location: /index.php');
           exit();
         } else {
           $_SESSION['notice'] = "Invalid Credentials";
         }
+      }
+    }
+
+    public function edit() {
+      if($id = $_SESSION['currentUserID']) {
+        $user = User::find($id);
+
+        require_once('views/users/edit.php');
+
+        if(isset($_POST['editSubmit'])) {
+          $user->email = $_POST['email'] ? mysql_real_escape_string($_POST['email']) : $user->email;
+          $user->password = $_POST['password'] ? mysql_real_escape_string($_POST['password']) : $user->password;
+          $user->firstName = $_POST['firstName'] ? mysql_real_escape_string($_POST['firstName']) : $user->firstName;
+          $user->lastName = $_POST['lastName'] ? mysql_real_escape_string($_POST['lastName']) : $user->lastName;
+          $user->faculty = $_POST['faculty'] ? mysql_real_escape_string($_POST['faculty']) : $user->faculty;
+          $user->dateOfBirth = $_POST['dateOfBirth'] ? mysql_real_escape_string($_POST['dateOfBirth']) : $user->dateOfBirth;
+          $user->userRole = $_POST['userRole'] ? mysql_real_escape_string($_POST['userRole']) : $user->userRole;
+
+          if(User::edit($user)) {
+            // Redirect the user to home(index) page
+            header('location: /index.php');
+            exit();
+          }
+
+        }
+      } else {
+        // Redirect the user to home(index) page
+        header('location: /index.php');
+        exit();
       }
     }
 
