@@ -10,7 +10,30 @@
 </head>
 <body>
 
-<?php require_once('routes.php'); ?>
+<!-- HEADER-->
+<?php require_once('views/partials/header.php'); ?>
+<!-- HEADER-->
+
+<div class="container">
+  <div class="row">
+    <!-- SIDEBAR -->
+    <div class="col-md-2" id="leftCol">
+      <?php 
+        if($_SESSION['currentUserID']) {
+          require_once('views/partials/sidebar.php'); 
+        }
+      ?>
+    </div> 
+    <!-- SIDEBAR -->
+
+    <!-- MAIN CONTENT -->
+    <div class="col-md-8" id="mainCol">
+      <?php require_once('routes.php'); ?>
+    </div>
+    <!-- MAIN CONTENT -->
+
+  </div>
+</div>
 
 </body>
 </html>
