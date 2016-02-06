@@ -26,35 +26,7 @@
       $this->createdAt = $createdAt;
     }
 
-    public static function all() {
-      $list = [];
-
-      $query = "SELECT * FROM users";
-      $result = mysql_query($query);
-
-      if (mysql_num_rows($result) > 0) {
-        while($user = mysql_fetch_array($result)) {
-          $list[] = new User($user['id'], $user['email'], $user['password'],
-                            $user['first_name'], $user['last_name'], $user['faculty'],
-                            $user['date_of_birth'], $user['user_role'], $user['is_admin'],
-                            $user['created_at']);
-        }
-      }
-
-      return $list;
-    }
-
-    public static function find($id) {
-      $query = "SELECT * FROM users WHERE id='$id' LIMIT 1";
-      $result = mysql_query($query);
-      $user = mysql_fetch_array($result);
-
-      return new User($user['id'], $user['email'], $user['password'],
-                            $user['first_name'], $user['last_name'], $user['faculty'],
-                            $user['date_of_birth'], $user['user_role'], $user['is_admin'],
-                            $user['created_at']);
-    }
-
+    // CREATE new user and add it to the database
     public static function create($email, $password, $firstName, $lastName,
                                   $faculty, $dateOfBirth, $userRole) {
 
@@ -73,7 +45,20 @@
       }
     }
 
-    public static function edit($user) {
+    // READ a user from the database using its ID
+    public static function find($id) {
+      $query = "SELECT * FROM users WHERE id='$id' LIMIT 1";
+      $result = mysql_query($query);
+      $user = mysql_fetch_array($result);
+
+      return new User($user['id'], $user['email'], $user['password'],
+                            $user['first_name'], $user['last_name'], $user['faculty'],
+                            $user['date_of_birth'], $user['user_role'], $user['is_admin'],
+                            $user['created_at']);
+    }
+
+    // UPDATE a user
+    public static function update($user) {
       $query = "UPDATE users SET email='$user->email', password='$user->password',
                 first_name='$user->firstName', last_name='$user->lastName',
                 faculty='$user->faculty', date_of_birth='$user->dateOfBirth',
@@ -86,11 +71,12 @@
       }
     }
 
+    // DELETE a user from the database using its ID
     public static function delete($id) {
       // Check if user exists
       if($user = User::find($id)) {
 
-        // Delete user from the database
+        // Delete the user
         $query = "DELETE FROM users WHERE id='$id'";
         if(mysql_query($query)) {
           return true;
@@ -102,6 +88,27 @@
       }
     }
 
+    // Return a list of all the users in the database
+    public static function all() {
+      $list = [];
+
+      $query = "SELECT * FROM users";
+      $result = mysql_query($query);
+
+      if (mysql_num_rows($result) > 0) {
+        while($user = mysql_fetch_array($result)) {
+          $list[] = new User($user['id'], $user['email'], $user['password'],
+                             $user['first_name'], $user['last_name'], $user['faculty'],
+                             $user['date_of_birth'], $user['user_role'], $user['is_admin'],
+                             $user['created_at']);
+        }
+      }
+
+      return $list;
+    }
+
+    // Check if a user exists using its email and password only
+    // then returns the whole user object
     public static function authenticate($email, $password) {
       $query = "SELECT * FROM users WHERE email='$email' AND password='$password' LIMIT 1";
       $result = mysql_query($query);
@@ -110,10 +117,11 @@
         $user = mysql_fetch_array($result);
 
         return new User($user['id'], $user['email'], $user['password'],
-                            $user['first_name'], $user['last_name'], $user['faculty'],
-                            $user['date_of_birth'], $user['user_role'], $user['is_admin'],
-                            $user['created_at']);
+                        $user['first_name'], $user['last_name'], $user['faculty'],
+                        $user['date_of_birth'], $user['user_role'], $user['is_admin'],
+                        $user['created_at']);
       }
     }
+
   }
 ?>

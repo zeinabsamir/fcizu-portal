@@ -18,7 +18,7 @@
             <a href="?controller=users&action=show&id=<?= $_SESSION['currentUserID'] ?>">Profile</a>
           </li>
           <li>
-            <a href="?controller=users&action=edit">Edit</a>
+            <a href="?controller=users&action=edit&id=<?= $_SESSION['currentUserID'] ?>">Edit</a>
           </li>
           <li>
             <a href="?controller=users&action=logout">Sign out</a>
