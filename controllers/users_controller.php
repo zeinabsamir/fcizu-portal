@@ -70,6 +70,15 @@
       }
     }
 
+    public function destroy() {
+      if(isset($_GET['id'])) {
+        if(User::delete($_GET['id'])) {
+          $_SESSION['notice'] = "User was deleted successfully!";
+          header('location: /index.php');
+        }
+      }
+    }
+
     public function register() {
       require_once('views/users/register.php');
 

@@ -86,6 +86,22 @@
       }
     }
 
+    public static function delete($id) {
+      // Check if user exists
+      if($user = User::find($id)) {
+
+        // Delete user from the database
+        $query = "DELETE FROM users WHERE id='$id'";
+        if(mysql_query($query)) {
+          return true;
+        } else {
+          echo "error".mysql_error()."\n";
+        }
+      } else {
+        return false;
+      }
+    }
+
     public static function authenticate($email, $password) {
       $query = "SELECT * FROM users WHERE email='$email' AND password='$password' LIMIT 1";
       $result = mysql_query($query);
