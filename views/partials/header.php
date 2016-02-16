@@ -27,6 +27,9 @@
           <li>
             <a href="?controller=users&action=login">Login</a>
           </li>
+          <li>
+            <a href="?controller=users&action=register">Register</a>
+          </li>
         <?php } ?>
       </ul>
     </nav>
