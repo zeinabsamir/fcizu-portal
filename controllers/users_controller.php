@@ -67,8 +67,6 @@
     // /?controller=user&action=register
     public function register() {
       require_once('views/users/register.php');
-      header('location: /index.php');
-      die();
 
       if(isset($_POST['registerSubmit'])) {
         $email = mysql_real_escape_string($_POST['email']);
