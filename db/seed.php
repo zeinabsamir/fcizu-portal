@@ -10,4 +10,14 @@ if(mysql_query($query, $connection)) {
 } else {
   echo "Student error: ".mysql_error()."\n";
 }
+
+// courses
+$query = "INSERT INTO courses (title, code, faculty, department, created_at)
+          VALUES ('Computer Graphics', 'CSEN506', 'FCI', 'Computer Science', now())";
+
+if(mysql_query($query, $connection)) {
+  echo "Course was created.\n";
+} else {
+  echo "Course error: ".mysql_error()."\n";
+}
 ?>
