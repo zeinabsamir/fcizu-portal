@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div class="form-element form-group">
-                <input type="password" name="password" class="form-control" placeholder="<?= $user->password ?>">
+                <input type="password" name="password" value="<?= $user->password ?>" class="form-control" placeholder="<?= $user->password ?>">
               </div>
             </div>
           </div>
