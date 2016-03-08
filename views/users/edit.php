@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-md-4 col-sm-5 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 text-center">
   <div class="form-box">
     <div class="row ">
-      <div class="col-lg-12 ">
+      <div class="col-lg-12">
         <form action="" method="post" enctype="multipart/form-data">
           <div class="row">
             <div class="col-lg-12 ">
