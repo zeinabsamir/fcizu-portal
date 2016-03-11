@@ -81,5 +81,28 @@
         }
       }
     }
+
+    // subscribe to course using StudentCourse::create()
+    // /?controller=courses&action=subscribe&course_id=x&student_id=y
+    public function subscribe() {
+      if(isset($_GET['course_id']) && isset($_GET['student_id'])) {
+        if(StudentCourse::create($_GET['course_id'], $_GET['student_id'])) {
+          $_SESSION['notice'] = "Subscribed successfully!";
+          header('location: /index.php');
+        }
+      }
+    }
+
+    // unsubscribe to course using StudentCourse::delete()
+    // /?controller=courses&action=unsubscribe&course_id=x&student_id=y
+    public function unsubscribe() {
+      if(isset($_GET['course_id']) && isset($_GET['student_id'])) {
+        if(StudentCourse::delete($_GET['course_id'], $_GET['student_id'])) {
+          $_SESSION['notice'] = "Unsubscribed successfully!";
+          header('location: /index.php');
+        }
+      }
+    }
+
   }
 ?>
