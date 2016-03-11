@@ -19,7 +19,7 @@
 
     public static function create($courseId, $studentId) {
       $year = date('Y');
-      $semester = '1';
+      $semester = StudentCourse::currentSemester();
 
       $query = "INSERT INTO studies (course_id, student_id, year, semester, created_at)
                 VALUES ('$courseId', '$studentId', '$year', '$semester', now())";
@@ -65,6 +65,25 @@
       } else {
         return false;
       }
+    }
+
+    private static function currentSemester() {
+      $currentMonth = date('m');
+      switch($currentMonth) {
+        case '10':
+        case '11':
+        case '12':
+        case '1':
+          return '1';
+          break;
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+          return '2';
+          break;
+      }
+      return '0';
     }
 
   }
