@@ -83,23 +83,41 @@
     }
 
     // subscribe to course using StudentCourse::create()
-    // /?controller=courses&action=subscribe&course_id=x&student_id=y
+    // /?controller=courses&action=subscribe&course_id=x&user_id=y
     public function subscribe() {
-      if(isset($_GET['course_id']) && isset($_GET['student_id'])) {
-        if(StudentCourse::create($_GET['course_id'], $_GET['student_id'])) {
-          $_SESSION['notice'] = "Subscribed successfully!";
-          header('location: /index.php');
+      if(isset($_GET['course_id']) && isset($_GET['user_id'])) {
+        if($_SESSION['currentUserRole'] == 'student') {
+          if(StudentCourse::create($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Subscribed successfully!";
+            header('location: /index.php');
+          }
+        } else if($_SESSION['currentUserRole'] == 'staff') {
+          if(TeacherCourse::create($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Subscribed successfully!";
+            header('location: /index.php');
+          }
+        } else {
+            header('location: /index.php');
         }
       }
     }
 
     // unsubscribe to course using StudentCourse::delete()
-    // /?controller=courses&action=unsubscribe&course_id=x&student_id=y
+    // /?controller=courses&action=unsubscribe&course_id=x&user_id=y
     public function unsubscribe() {
-      if(isset($_GET['course_id']) && isset($_GET['student_id'])) {
-        if(StudentCourse::delete($_GET['course_id'], $_GET['student_id'])) {
-          $_SESSION['notice'] = "Unsubscribed successfully!";
-          header('location: /index.php');
+      if(isset($_GET['course_id']) && isset($_GET['user_id'])) {
+        if($_SESSION['currentUserRole'] == 'student') {
+          if(StudentCourse::delete($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Unsubscribed successfully!";
+            header('location: /index.php');
+          }
+        } else if($_SESSION['currentUserRole'] == 'staff') {
+          if(TeacherCourse::delete($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Unsubscribed successfully!";
+            header('location: /index.php');
+          }
+        } else {
+            header('location: /index.php');
         }
       }
     }

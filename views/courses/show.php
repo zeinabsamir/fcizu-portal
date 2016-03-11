@@ -35,9 +35,9 @@
             <div class="col-lg-12">
               <div class="form-element form-group">
                 <?php if(StudentCourse::isSubsribed($course->id, $_SESSION['currentUserID'])) { ?>
-                  <a class="btn btn-default" href="?controller=courses&action=unsubscribe&course_id=<?php echo $course->id; ?>&student_id=<?php echo $_SESSION['currentUserID']; ?>">Unubscribe</a>
+                  <a class="btn btn-default" href="?controller=courses&action=unsubscribe&course_id=<?php echo $course->id; ?>&user_id=<?php echo $_SESSION['currentUserID']; ?>">Unubscribe</a>
                 <?php } else { ?>
-                  <a class="btn btn-default" href="?controller=courses&action=subscribe&course_id=<?php echo $course->id; ?>&student_id=<?php echo $_SESSION['currentUserID']; ?>">Subscribe</a>
+                  <a class="btn btn-default" href="?controller=courses&action=subscribe&course_id=<?php echo $course->id; ?>&user_id=<?php echo $_SESSION['currentUserID']; ?>">Subscribe</a>
                 <?php } ?>
               </div>
             </div>
