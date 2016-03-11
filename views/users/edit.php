@@ -41,7 +41,7 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div class="form-element form-group">
-                <input type="text" name="faculty" class="form-control" placeholder="<?= $user->faculty ?>">
+                <input type="text" name="department" class="form-control" placeholder="<?= $user->department ?>">
               </div>
             </div>
           </div>

@@ -29,11 +29,10 @@
       if(isset($_POST['createCourseSubmit'])) {
         $title = mysql_real_escape_string($_POST['title']);
         $code = mysql_real_escape_string($_POST['code']);
-        $faculty = mysql_real_escape_string($_POST['faculty']);
         $department = mysql_real_escape_string($_POST['department']);
 
         // Create the course in the database
-        if($course = Course::create($title, $code, $faculty, $department)) {
+        if($course = Course::create($title, $code, $department)) {
           $_SESSION['notice'] = 'Course was created successfully!';
 
           // Go to the home page
@@ -54,7 +53,6 @@
         if(isset($_POST['editCourseSubmit'])) {
           $course->title = $_POST['title'] ? mysql_real_escape_string($_POST['title']) : $course->title;
           $course->code = $_POST['code'] ? mysql_real_escape_string($_POST['code']) : $course->code;
-          $course->faculty = $_POST['faculty'] ? mysql_real_escape_string($_POST['faculty']) : $course->faculty;
           $course->department = $_POST['department'] ? mysql_real_escape_string($_POST['department']) : $course->department;
 
           if(Course::update($course)) {

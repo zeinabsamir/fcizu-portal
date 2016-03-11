@@ -27,13 +27,6 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div class="form-element form-group">
-                <input type="text" name="faculty" class="form-control" placeholder="Faculty">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12 ">
-              <div class="form-element form-group">
                 <input type="text" name="department" class="form-control" placeholder="Department">
               </div>
             </div>

@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="form-element form-group">
-                Faculty <h4><?php echo $user->faculty; ?></h4>
+                Department <h4><?php echo $user->department; ?></h4>
               </div>
             </div>
           </div>

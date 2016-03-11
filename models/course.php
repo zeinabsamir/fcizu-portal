@@ -3,29 +3,25 @@
     public $id;
     public $title;
     public $code;
-    public $faculty;
     public $department;
     public $createdAt;
 
-    public function __construct($id, $title, $code, $faculty, $department,
-                                $createdAt) {
+    public function __construct($id, $title, $code, $department, $createdAt) {
       $this->id = $id;
       $this->title = $title;
       $this->code = $code;
-      $this->faculty = $faculty;
       $this->department = $department;
       $this->createdAt = $createdAt;
     }
 
     // CREATE new course and add it to the database
-    public static function create($title, $code, $faculty, $department) {
+    public static function create($title, $code, $department) {
 
-      $query = "INSERT INTO courses (title, code, faculty, department, created_at)
-                VALUES ('$title', '$code', '$faculty', '$department', now())";
+      $query = "INSERT INTO courses (title, code, department, created_at)
+                VALUES ('$title', '$code', '$department', now())";
 
       if(mysql_query($query)) {
-        return new Course(null, $title, $code,
-                        $faculty, $department, null);
+        return new Course(null, $title, $code, $department, null);
       } else {
         $_SESSION['notice'] = "Course error: ".mysql_error()."\n";
       }
@@ -38,15 +34,13 @@
       $course = mysql_fetch_array($result);
 
       return new Course($course['id'], $course['title'], $course['code'],
-                            $course['faculty'], $course['department'],
-                            $course['created_at']);
+                            $course['department'], $course['created_at']);
     }
 
     // UPDATE a course
     public static function update($course) {
       $query = "UPDATE courses SET title='$course->title', code='$course->code',
-                faculty='$course->faculty', department='$course->department'
-                WHERE id='$course->id'";
+                department='$course->department' WHERE id='$course->id'";
 
       if(mysql_query($query)){
         return true;
@@ -81,8 +75,7 @@
       if (mysql_num_rows($result) > 0) {
         while($course = mysql_fetch_array($result)) {
           $list[] = new Course($course['id'], $course['title'], $course['code'],
-                             $course['faculty'], $course['department'],
-                             $course['created_at']);
+                             $course['department'], $course['created_at']);
         }
       }
 

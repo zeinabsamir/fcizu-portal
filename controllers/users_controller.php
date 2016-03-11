@@ -34,7 +34,7 @@
           $user->password = $_POST['password'] ? mysql_real_escape_string($_POST['password']) : $user->password;
           $user->firstName = $_POST['firstName'] ? mysql_real_escape_string($_POST['firstName']) : $user->firstName;
           $user->lastName = $_POST['lastName'] ? mysql_real_escape_string($_POST['lastName']) : $user->lastName;
-          $user->faculty = $_POST['faculty'] ? mysql_real_escape_string($_POST['faculty']) : $user->faculty;
+          $user->department = $_POST['department'] ? mysql_real_escape_string($_POST['department']) : $user->department;
           $user->dateOfBirth = $_POST['dateOfBirth'] ? mysql_real_escape_string($_POST['dateOfBirth']) : $user->dateOfBirth;
           $user->userRole = $_POST['userRole'] ? mysql_real_escape_string($_POST['userRole']) : $user->userRole;
 
@@ -73,12 +73,12 @@
         $password = mysql_real_escape_string($_POST['password']);
         $firstName = mysql_real_escape_string($_POST['firstName']);
         $lastName = mysql_real_escape_string($_POST['lastName']);
-        $faculty = mysql_real_escape_string($_POST['faculty']);
+        $department = mysql_real_escape_string($_POST['department']);
         $dateOfBirth = mysql_real_escape_string($_POST['dateOfBirth']);
         $userRole = mysql_real_escape_string($_POST['userRole']);
 
         // Create the user
-        if($user = User::create($email, $password, $firstName, $lastName, $faculty, $dateOfBirth, $userRole)) {
+        if($user = User::create($email, $password, $firstName, $lastName, $department, $dateOfBirth, $userRole)) {
           $_SESSION['notice'] = 'User was created successfully!';
 
           // Go to the home page
