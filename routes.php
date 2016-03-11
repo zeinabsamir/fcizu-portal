@@ -16,6 +16,7 @@
       case 'courses':
         require_once('models/student_course.php');
         require_once('models/teacher_course.php');
+        require_once('helpers/courses_helper.php');
         require_once('models/course.php');
         $controller = new CoursesController();
       break;

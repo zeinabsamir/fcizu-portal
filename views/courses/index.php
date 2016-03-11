@@ -17,7 +17,7 @@
         <td><?php echo $course->title; ?></td>
         <td><?php echo $course->code; ?></td>
         <td>
-          <?php if(StudentCourse::isSubsribed($course->id, $_SESSION['currentUserID'])) { ?>
+          <?php if(CoursesHelper::checkSubscription($course->id, $_SESSION['currentUserID'])) { ?>
             <a href="?controller=courses&action=unsubscribe&course_id=<?php echo $course->id; ?>&user_id=<?php echo $_SESSION['currentUserID']; ?>">Unubscribe</a>
           <?php } else { ?>
             <a href="?controller=courses&action=subscribe&course_id=<?php echo $course->id; ?>&user_id=<?php echo $_SESSION['currentUserID']; ?>">Subscribe</a>

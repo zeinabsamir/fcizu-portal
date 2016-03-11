@@ -59,7 +59,6 @@
     public static function isSubsribed($courseId, $studentId) {
       $query = "SELECT * FROM studies WHERE course_id='$courseId' AND student_id='$studentId' LIMIT 1";
       $result = mysql_query($query);
-      $course = mysql_fetch_array($result);
 
       if(mysql_num_rows($result) == 1) {
         return true;

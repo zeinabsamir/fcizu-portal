@@ -82,7 +82,7 @@
       }
     }
 
-    // subscribe to course using StudentCourse::create()
+    // subscribe to course using StudentCourse::create() OR TeacherCourse::delete()
     // /?controller=courses&action=subscribe&course_id=x&user_id=y
     public function subscribe() {
       if(isset($_GET['course_id']) && isset($_GET['user_id'])) {
@@ -102,7 +102,7 @@
       }
     }
 
-    // unsubscribe to course using StudentCourse::delete()
+    // unsubscribe to course using StudentCourse::delete() OR TeacherCourse::delete()
     // /?controller=courses&action=unsubscribe&course_id=x&user_id=y
     public function unsubscribe() {
       if(isset($_GET['course_id']) && isset($_GET['user_id'])) {
