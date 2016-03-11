@@ -60,7 +60,7 @@
                     <input type="radio" name="userRole" value="student" checked> Student
                   </label>
                   <label class="btn btn-default">
-                    <input type="radio" name="userRole" value="staff"> Staff/TA
+                    <input type="radio" name="userRole" value="teacher"> Teacher
                   </label>
                 </div>
               </div>

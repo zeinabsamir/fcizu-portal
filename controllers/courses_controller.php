@@ -91,7 +91,7 @@
             $_SESSION['notice'] = "Subscribed successfully!";
             header('location: /index.php');
           }
-        } else if($_SESSION['currentUserRole'] == 'staff') {
+        } else if($_SESSION['currentUserRole'] == 'teacher') {
           if(TeacherCourse::create($_GET['course_id'], $_GET['user_id'])) {
             $_SESSION['notice'] = "Subscribed successfully!";
             header('location: /index.php');
@@ -111,7 +111,7 @@
             $_SESSION['notice'] = "Unsubscribed successfully!";
             header('location: /index.php');
           }
-        } else if($_SESSION['currentUserRole'] == 'staff') {
+        } else if($_SESSION['currentUserRole'] == 'teacher') {
           if(TeacherCourse::delete($_GET['course_id'], $_GET['user_id'])) {
             $_SESSION['notice'] = "Unsubscribed successfully!";
             header('location: /index.php');
