@@ -8,7 +8,7 @@ $query = "INSERT INTO users (email, first_name, last_name, password, department,
 if(mysql_query($query, $connection)) {
   echo "Teacher User was created.\n";
 } else {
-  echo "Teacher User error: ".mysql_error()."\n";
+  echo "Student User error: ".mysql_error()."\n";
 }
 
 $query = "INSERT INTO users (email, first_name, last_name, password, department, date_of_birth, user_role, is_admin, created_at)
