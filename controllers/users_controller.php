@@ -99,10 +99,10 @@
 
         if($user = User::authenticate($email, $password)) {
           $_SESSION['currentUserID'] = $user->id;
-          $_SESSION['currentUserRole'] = $user->user_role;
+          $_SESSION['currentUserRole'] = $user->userRole;
 
-          if($user->is_admin == 1) {
-            $_SESSION['currentUserIsAdmin'] = $user->is_admin;
+          if($user->isAdmin == 1) {
+            $_SESSION['currentUserIsAdmin'] = $user->isAdmin;
           }
 
           // Redirect user to the home(index) page
