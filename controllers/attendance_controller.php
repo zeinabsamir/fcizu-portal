@@ -8,7 +8,6 @@
       $myCoursesList = [];
 
       $courseIds = TeacherCourse::myCourses($_SESSION['currentUserID']);
-
       foreach($courseIds as $courseId) {
         $course = Course::find($courseId);
         $myCoursesList[] = $course;
@@ -16,5 +15,20 @@
 
       require_once('views/attendance/index.php');
     }
+
+    public function show() {
+      $studentsList = [];
+
+      $course = Course::find($_GET['id']);
+
+      $studentIds = StudentCourse::whoStudies($_GET['id']);
+      foreach($studentIds as $studentId) {
+        $student = User::find($studentId);
+        $studentsList[] = $student;
+      }
+
+      require_once('views/attendance/show.php');
+    }
+
   }
 ?>
