@@ -7,19 +7,22 @@
     switch($controller) {
       case 'application':
         $controller = new ApplicationController();
-      break;
+        break;
       case 'users':
         // we need the model to query the database later in the controller
         require_once('models/user.php');
         $controller = new UsersController();
-      break;
+        break;
       case 'courses':
         require_once('models/student_course.php');
         require_once('models/teacher_course.php');
         require_once('helpers/courses_helper.php');
         require_once('models/course.php');
         $controller = new CoursesController();
-      break;
+        break;
+      case 'attendance':
+        $controller = new AttendanceController();
+        break;
     }
 
     // call the action
@@ -30,7 +33,8 @@
 // we consider those "allowed" values
 $controllers = array('application' => ['home', 'error'],
                      'users' => ['index', 'show', 'edit', 'destroy', 'login', 'register', 'logout'],
-                     'courses' => ['index', 'show', 'create', 'edit', 'destroy', 'subscribe', 'unsubscribe']);
+                     'courses' => ['index', 'show', 'create', 'edit', 'destroy', 'subscribe', 'unsubscribe'],
+                     'attendance' => ['index']);
 
 // check that the requested controller and action are both allowed in $controllers variable above
 // if someone tries to access something else he will be redirected to the error action of the application controller
