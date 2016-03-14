@@ -15,7 +15,11 @@
         <td><?= $student->email ?></td>
         <td><?= date('d/M/Y') ?></td>
         <td>
-          <a class="" href="?controller=attendance&action=addAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>&teacher_id=<?= $_SESSION['currentUserID'] ?>">Add Attendance</a>
+          <?php if (AttendanceHelper::checkAttendance($_GET['id'], $student->id, date('Y-m-d'))) { ?>
+            <a class="" href="?controller=attendance&action=removeAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>&teacher_id=<?= $_SESSION['currentUserID'] ?>">Attended</a>
+          <?php } else { ?>
+            <a class="" href="?controller=attendance&action=addAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>&teacher_id=<?= $_SESSION['currentUserID'] ?>">Absent</a>
+          <?php } ?>
         </td>
       </tr>
     <?php } ?>
