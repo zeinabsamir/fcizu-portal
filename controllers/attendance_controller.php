@@ -30,5 +30,19 @@
       require_once('views/attendance/show.php');
     }
 
+    public function addAttendance() {
+      if(isset($_GET['course_id']) && isset($_GET['student_id']) && isset($_GET['teacher_id'])) {
+        $courseId = $_GET['course_id'];
+        $studentId = $_GET['student_id'];
+        $teacherId = $_GET['teacher_id'];
+        $hasAttended = 1;
+        $day = date('Y-m-d');
+
+        if (Attendance::create($courseId, $studentId, $teacherId, $hasAttended, $day)){
+          header('location: /index.php');
+        }
+      }
+    }
+
   }
 ?>

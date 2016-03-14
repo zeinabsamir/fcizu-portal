@@ -13,8 +13,10 @@
     <?php foreach($studentsList as $student) { ?>
       <tr>
         <td><?= $student->email ?></td>
-        <td><?= date('Y-m-d') ?></td>
-        <td><?= $student->firstName ?></td>
+        <td><?= date('d/M/Y') ?></td>
+        <td>
+          <a class="" href="?controller=attendance&action=addAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>&teacher_id=<?= $_SESSION['currentUserID'] ?>">Add Attendance</a>
+        </td>
       </tr>
     <?php } ?>
   </tbody>
