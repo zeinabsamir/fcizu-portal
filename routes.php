@@ -3,6 +3,9 @@
     // require the file that matches the controller name from controllers/ folder
     require_once('controllers/' . $controller . '_controller.php');
 
+    // require all the models to the whole application
+    require_once('models/application.php');
+
     // create a new instance of the needed controller
     switch($controller) {
       case 'application':
@@ -10,20 +13,18 @@
         break;
       case 'users':
         // we need the model to query the database later in the controller
-        require_once('models/user.php');
         $controller = new UsersController();
         break;
       case 'courses':
-        require_once('models/student_course.php');
-        require_once('models/teacher_course.php');
-        require_once('helpers/courses_helper.php');
-        require_once('models/course.php');
         $controller = new CoursesController();
         break;
       case 'attendance':
         $controller = new AttendanceController();
         break;
     }
+
+    // require all the helpers to the application
+    require_once('helpers/application_helper.php');
 
     // call the action
     $controller->{ $action }();
