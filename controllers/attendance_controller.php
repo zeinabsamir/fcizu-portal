@@ -1,9 +1,6 @@
 <?php
   class AttendanceController {
 
-    // List all users in variable $users and giving it to the view
-    // We grab the list of users using User::all() method
-    // /?controller=user&action=index
     public function index() {
       $myCoursesList = [];
 
@@ -39,6 +36,18 @@
         $day = date('Y-m-d');
 
         if (Attendance::create($courseId, $studentId, $teacherId, $hasAttended, $day)){
+          header('location: /index.php');
+        }
+      }
+    }
+
+    public function removeAttendance() {
+      if(isset($_GET['course_id']) && isset($_GET['student_id'])) {
+        $courseId = $_GET['course_id'];
+        $studentId = $_GET['student_id'];
+        $day = date('Y-m-d');
+
+        if (Attendance::delete($courseId, $studentId, $day)){
           header('location: /index.php');
         }
       }

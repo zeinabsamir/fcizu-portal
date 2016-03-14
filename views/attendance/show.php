@@ -16,7 +16,7 @@
         <td><?= date('d/M/Y') ?></td>
         <td>
           <?php if (AttendanceHelper::checkAttendance($_GET['id'], $student->id, date('Y-m-d'))) { ?>
-            <a class="" href="?controller=attendance&action=removeAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>&teacher_id=<?= $_SESSION['currentUserID'] ?>">Attended</a>
+            <a class="" href="?controller=attendance&action=removeAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>">Attended</a>
           <?php } else { ?>
             <a class="" href="?controller=attendance&action=addAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>&teacher_id=<?= $_SESSION['currentUserID'] ?>">Absent</a>
           <?php } ?>
