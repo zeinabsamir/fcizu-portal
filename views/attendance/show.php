@@ -21,6 +21,7 @@
     </tbody>
   </table>
 <?php } else { ?>
+<a class="btn btn-primary" href="?controller=attendance&action=generateAttendance&id=<?= $_GET['id'] ?>">Generate Attendance for today</a>
 
 <table class="table">
   <thead>
@@ -32,16 +33,14 @@
   </thead>
 
   <tbody>
-    <?php foreach($studentsList as $student) { ?>
+    <?php foreach($attendanceRecords as $attendanceRecord) { ?>
       <tr>
-        <td><?= $student->email ?></td>
-        <td><?= date('d/M/Y') ?></td>
+        <td><?= User::find($attendanceRecord->studentId)->email ?></td>
+        <td><?= $attendanceRecord->day ?></td>
         <td>
-          <?php if (AttendanceHelper::checkAttendance($_GET['id'], $student->id, date('Y-m-d'))) { ?>
-            <a class="" href="?controller=attendance&action=removeAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>">Attended</a>
-          <?php } else { ?>
-            <a class="" href="?controller=attendance&action=addAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $student->id ?>&teacher_id=<?= $_SESSION['currentUserID'] ?>">Absent</a>
-          <?php } ?>
+          <a href="?controller=attendance&action=toggleAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $attendanceRecord->studentId ?>">
+            <?= AttendanceHelper::saneAttendance($attendanceRecord->hasAttended) ?>
+          </a>
         </td>
       </tr>
     <?php } ?>
