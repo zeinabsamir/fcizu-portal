@@ -67,6 +67,21 @@
       }
     }
 
+    public static function myCourses($teacherId) {
+      $list = [];
+
+      $query = "SELECT course_id from teaches WHERE teacher_id='$teacherId'";
+      $result = mysql_query($query);
+
+      if (mysql_num_rows($result) > 0) {
+        while($courseId = mysql_fetch_array($result)) {
+          $list[] = $courseId['course_id'];
+        }
+      }
+
+      return $list;
+    }
+
     private static function currentSemester() {
       $currentMonth = date('m');
       switch($currentMonth) {
