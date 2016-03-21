@@ -1,5 +1,27 @@
 <h2><?= $course->title ?> Attendance</h2>
 
+<?php if ($_SESSION['currentUserRole'] == 'student') { ?>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Attendance</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <?php foreach($attendanceRecords as $attendanceRecord) { ?>
+        <tr>
+          <td><?= $attendanceRecord->day ?></td>
+          <td>
+            <?= AttendanceHelper::saneAttendance($attendanceRecord->hasAttended) ?>
+          </td>
+        </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+<?php } else { ?>
+
 <table class="table">
   <thead>
     <tr>
@@ -25,3 +47,4 @@
     <?php } ?>
   </tbody>
 </table>
+<?php } ?>

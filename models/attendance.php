@@ -55,6 +55,23 @@
       }
     }
 
+    public static function all($courseId, $studentId) {
+      $list = [];
+
+      $query = "SELECT * from attendance WHERE course_id='$courseId' AND student_id='$studentId'";
+      $result = mysql_query($query);
+
+      if (mysql_num_rows($result) > 0) {
+        while($attendance = mysql_fetch_array($result)) {
+          $list[] = new Attendance($attendance['id'], $attendance['course_id'], $attendance['student_id'],
+                            $attendance['teacher_id'], $attendance['has_attended'],
+                            $attendance['day'], $attendance['created_at']);
+        }
+      }
+
+      return $list;
+    }
+
     public static function didAttend($courseId, $studentId, $day) {
       $query = "SELECT * FROM attendance WHERE course_id='$courseId' AND student_id='$studentId' AND day='$day' LIMIT 1";
       $result = mysql_query($query);

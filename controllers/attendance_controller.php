@@ -2,26 +2,41 @@
   class AttendanceController {
 
     public function index() {
-      $myCoursesList = [];
+      if ($_SESSION['currentUserRole'] == 'student') {
+        $myCoursesList = [];
+        $courseIds = StudentCourse::myCourses($_SESSION['currentUserID']);
 
-      $courseIds = TeacherCourse::myCourses($_SESSION['currentUserID']);
-      foreach($courseIds as $courseId) {
-        $course = Course::find($courseId);
-        $myCoursesList[] = $course;
+        foreach($courseIds as $courseId) {
+          $course = Course::find($courseId);
+          $myCoursesList[] = $course;
+        }
+
+      } else if ($_SESSION['currentUserRole'] == 'teacher') {
+        $myCoursesList = [];
+        $courseIds = TeacherCourse::myCourses($_SESSION['currentUserID']);
+
+        foreach($courseIds as $courseId) {
+          $course = Course::find($courseId);
+          $myCoursesList[] = $course;
+        }
       }
 
       require_once('views/attendance/index.php');
     }
 
     public function show() {
-      $studentsList = [];
-
       $course = Course::find($_GET['id']);
 
-      $studentIds = StudentCourse::whoStudies($_GET['id']);
-      foreach($studentIds as $studentId) {
-        $student = User::find($studentId);
-        $studentsList[] = $student;
+      if ($_SESSION['currentUserRole'] == 'student') {
+        $attendanceRecords = Attendance::all($_GET['id'], $_SESSION['currentUserID']);
+      } else if ($_SESSION['currentUserRole'] == 'teacher') {
+        $studentsList = [];
+        $studentIds = StudentCourse::whoStudies($_GET['id']);
+
+        foreach($studentIds as $studentId) {
+          $student = User::find($studentId);
+          $studentsList[] = $student;
+        }
       }
 
       require_once('views/attendance/show.php');
