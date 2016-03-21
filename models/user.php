@@ -5,21 +5,21 @@
     public $password;
     public $firstName;
     public $lastName;
-    public $faculty;
+    public $department;
     public $dateOfBirth;
     public $userRole;
     public $isAdmin;
     public $createdAt;
 
     public function __construct($id, $email, $password, $firstName, $lastName,
-                                $faculty, $dateOfBirth, $userRole, $isAdmin,
+                                $department, $dateOfBirth, $userRole, $isAdmin,
                                 $createdAt) {
       $this->id = $id;
       $this->email = $email;
       $this->password = $password;
       $this->firstName = $firstName;
       $this->lastName = $lastName;
-      $this->faculty = $faculty;
+      $this->department = $department;
       $this->dateOfBirth = $dateOfBirth;
       $this->userRole = $userRole;
       $this->isAdmin = $isAdmin;
@@ -28,17 +28,17 @@
 
     // CREATE new user and add it to the database
     public static function create($email, $password, $firstName, $lastName,
-                                  $faculty, $dateOfBirth, $userRole) {
+                                  $department, $dateOfBirth, $userRole) {
 
       // Sanitize date_of_birth to MySQL DATE format yyyy-mm-dd
       $dateOfBirth = date('Y-m-d', strtotime($dateOfBirth));
 
-      $query = "INSERT INTO users (email, password, first_name, last_name, faculty, date_of_birth, user_role, created_at)
-                VALUES ('$email', '$password', '$firstName', '$lastName', '$faculty', '$dateOfBirth', '$userRole', now())";
+      $query = "INSERT INTO users (email, password, first_name, last_name, department, date_of_birth, user_role, created_at)
+                VALUES ('$email', '$password', '$firstName', '$lastName', '$department', '$dateOfBirth', '$userRole', now())";
 
       if(mysql_query($query)) {
         return new User(null, $email, $password,
-                        $firstName, $lastName, $faculty,
+                        $firstName, $lastName, $department,
                         $dateOfBirth, $userRole, null, null);
       } else {
         $_SESSION['notice'] = "User error: ".mysql_error()."\n";
@@ -52,7 +52,7 @@
       $user = mysql_fetch_array($result);
 
       return new User($user['id'], $user['email'], $user['password'],
-                            $user['first_name'], $user['last_name'], $user['faculty'],
+                            $user['first_name'], $user['last_name'], $user['department'],
                             $user['date_of_birth'], $user['user_role'], $user['is_admin'],
                             $user['created_at']);
     }
@@ -61,7 +61,7 @@
     public static function update($user) {
       $query = "UPDATE users SET email='$user->email', password='$user->password',
                 first_name='$user->firstName', last_name='$user->lastName',
-                faculty='$user->faculty', date_of_birth='$user->dateOfBirth',
+                department='$user->department', date_of_birth='$user->dateOfBirth',
                 user_role='$user->userRole' WHERE id='$user->id'";
 
       if(mysql_query($query)){
@@ -98,7 +98,7 @@
       if (mysql_num_rows($result) > 0) {
         while($user = mysql_fetch_array($result)) {
           $list[] = new User($user['id'], $user['email'], $user['password'],
-                             $user['first_name'], $user['last_name'], $user['faculty'],
+                             $user['first_name'], $user['last_name'], $user['department'],
                              $user['date_of_birth'], $user['user_role'], $user['is_admin'],
                              $user['created_at']);
         }
@@ -117,7 +117,7 @@
         $user = mysql_fetch_array($result);
 
         return new User($user['id'], $user['email'], $user['password'],
-                        $user['first_name'], $user['last_name'], $user['faculty'],
+                        $user['first_name'], $user['last_name'], $user['department'],
                         $user['date_of_birth'], $user['user_role'], $user['is_admin'],
                         $user['created_at']);
       }

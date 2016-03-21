@@ -41,7 +41,7 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div class="form-element form-group">
-                <input type="text" name="faculty" class="form-control" placeholder="Faculty">
+                <input type="text" name="department" class="form-control" placeholder="Department">
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
                     <input type="radio" name="userRole" value="student" checked> Student
                   </label>
                   <label class="btn btn-default">
-                    <input type="radio" name="userRole" value="staff"> Staff/TA
+                    <input type="radio" name="userRole" value="teacher"> Teacher
                   </label>
                 </div>
               </div>

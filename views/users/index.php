@@ -5,7 +5,7 @@
     <tr>
       <th>Id</th>
       <th>Email</th>
-      <th>Faculty</th>
+      <th>Department</th>
       <th>Role</th>
       <th>Actions</th>
     </tr>
@@ -16,7 +16,7 @@
       <tr>
         <td><?php echo $user->id; ?></td>
         <td><?php echo $user->email; ?></td>
-        <td><?php echo $user->faculty; ?></td>
+        <td><?php echo $user->department; ?></td>
         <td><?php echo $user->userRole; ?></td>
         <td>
           <a href='?controller=users&action=show&id=<?php echo $user->id; ?>'>Show</a> |

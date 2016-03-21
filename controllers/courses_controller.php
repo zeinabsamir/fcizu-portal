@@ -29,11 +29,10 @@
       if(isset($_POST['createCourseSubmit'])) {
         $title = mysql_real_escape_string($_POST['title']);
         $code = mysql_real_escape_string($_POST['code']);
-        $faculty = mysql_real_escape_string($_POST['faculty']);
         $department = mysql_real_escape_string($_POST['department']);
 
         // Create the course in the database
-        if($course = Course::create($title, $code, $faculty, $department)) {
+        if($course = Course::create($title, $code, $department)) {
           $_SESSION['notice'] = 'Course was created successfully!';
 
           // Go to the home page
@@ -54,7 +53,6 @@
         if(isset($_POST['editCourseSubmit'])) {
           $course->title = $_POST['title'] ? mysql_real_escape_string($_POST['title']) : $course->title;
           $course->code = $_POST['code'] ? mysql_real_escape_string($_POST['code']) : $course->code;
-          $course->faculty = $_POST['faculty'] ? mysql_real_escape_string($_POST['faculty']) : $course->faculty;
           $course->department = $_POST['department'] ? mysql_real_escape_string($_POST['department']) : $course->department;
 
           if(Course::update($course)) {
@@ -81,5 +79,46 @@
         }
       }
     }
+
+    // subscribe to course using StudentCourse::create() OR TeacherCourse::delete()
+    // /?controller=courses&action=subscribe&course_id=x&user_id=y
+    public function subscribe() {
+      if(isset($_GET['course_id']) && isset($_GET['user_id'])) {
+        if($_SESSION['currentUserRole'] == 'student') {
+          if(StudentCourse::create($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Subscribed successfully!";
+            header('location: /index.php');
+          }
+        } else if($_SESSION['currentUserRole'] == 'teacher') {
+          if(TeacherCourse::create($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Subscribed successfully!";
+            header('location: /index.php');
+          }
+        } else {
+            header('location: /index.php');
+        }
+      }
+    }
+
+    // unsubscribe to course using StudentCourse::delete() OR TeacherCourse::delete()
+    // /?controller=courses&action=unsubscribe&course_id=x&user_id=y
+    public function unsubscribe() {
+      if(isset($_GET['course_id']) && isset($_GET['user_id'])) {
+        if($_SESSION['currentUserRole'] == 'student') {
+          if(StudentCourse::delete($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Unsubscribed successfully!";
+            header('location: /index.php');
+          }
+        } else if($_SESSION['currentUserRole'] == 'teacher') {
+          if(TeacherCourse::delete($_GET['course_id'], $_GET['user_id'])) {
+            $_SESSION['notice'] = "Unsubscribed successfully!";
+            header('location: /index.php');
+          }
+        } else {
+            header('location: /index.php');
+        }
+      }
+    }
+
   }
 ?>
