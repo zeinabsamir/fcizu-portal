@@ -25,23 +25,23 @@
     }
 
     public function show() {
-      $course = Course::find($_GET['id']);
+      $course = Course::find($_GET['course_id']);
 
       if ($_SESSION['currentUserRole'] == 'student') {
-        $attendanceRecords = Attendance::all($_GET['id'], $_SESSION['currentUserID']);
+        $attendanceRecords = Attendance::all($_GET['course_id'], $_SESSION['currentUserID']);
       } else if ($_SESSION['currentUserRole'] == 'teacher') {
-        $attendanceRecords = Attendance::findByDay($_GET['id'], date('Y-m-d'));
+        $attendanceRecords = Attendance::findByDay($_GET['course_id'], date('Y-m-d'));
       }
 
       require_once('views/attendance/show.php');
     }
 
     public function generateAttendance() {
-      if ($_GET['id'] && $_SESSION['currentUserRole'] == 'teacher') {
-        $courseId = $_GET['id'];
+      if ($_GET['course_id'] && $_SESSION['currentUserRole'] == 'teacher') {
+        $courseId = $_GET['course_id'];
         $teacherId = $_SESSION['currentUserID'];
         $day = date('Y-m-d');
-        $studentIds = StudentCourse::whoStudies($_GET['id']);
+        $studentIds = StudentCourse::whoStudies($_GET['course_id']);
 
         foreach($studentIds as $studentId) {
           Attendance::create($courseId, $studentId, $teacherId, $day);

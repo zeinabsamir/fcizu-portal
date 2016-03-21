@@ -21,7 +21,7 @@
     </tbody>
   </table>
 <?php } else { ?>
-<a class="btn btn-primary" href="?controller=attendance&action=generateAttendance&id=<?= $_GET['id'] ?>">Generate Attendance for today</a>
+<a class="btn btn-primary" href="?controller=attendance&action=generateAttendance&course_id=<?= $_GET['course_id'] ?>">Generate Attendance for today</a>
 
 <table class="table">
   <thead>
@@ -38,7 +38,7 @@
         <td><?= User::find($attendanceRecord->studentId)->email ?></td>
         <td><?= $attendanceRecord->day ?></td>
         <td>
-          <a href="?controller=attendance&action=toggleAttendance&course_id=<?= $_GET['id'] ?>&student_id=<?= $attendanceRecord->studentId ?>">
+          <a href="?controller=attendance&action=toggleAttendance&course_id=<?= $_GET['course_id'] ?>&student_id=<?= $attendanceRecord->studentId ?>">
             <?= AttendanceHelper::saneAttendance($attendanceRecord->hasAttended) ?>
           </a>
         </td>
