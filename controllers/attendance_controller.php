@@ -51,6 +51,20 @@
       }
     }
 
+    public function removeAttendance() {
+      if ($_GET['course_id'] && $_SESSION['currentUserRole'] == 'teacher') {
+        $courseId = $_GET['course_id'];
+        $day = date('Y-m-d');
+        $studentIds = StudentCourse::whoStudies($_GET['course_id']);
+
+        foreach($studentIds as $studentId) {
+          Attendance::delete($courseId, $studentId, $day);
+        }
+
+        header('location: /index.php');
+      }
+    }
+
     public function toggleAttendance() {
       if($_SESSION['currentUserRole'] == 'teacher' && isset($_GET['course_id']) && isset($_GET['student_id'])) {
         $courseId = $_GET['course_id'];
@@ -58,32 +72,6 @@
         $day = date('Y-m-d');
 
         if (Attendance::updateHasAttended($courseId, $studentId, $day)){
-          header('location: /index.php');
-        }
-      }
-    }
-
-    public function addAttendance() {
-      if(isset($_GET['course_id']) && isset($_GET['student_id']) && isset($_GET['teacher_id'])) {
-        $courseId = $_GET['course_id'];
-        $studentId = $_GET['student_id'];
-        $teacherId = $_GET['teacher_id'];
-        $hasAttended = 1;
-        $day = date('Y-m-d');
-
-        if (Attendance::create($courseId, $studentId, $teacherId, $hasAttended, $day)){
-          header('location: /index.php');
-        }
-      }
-    }
-
-    public function removeAttendance() {
-      if(isset($_GET['course_id']) && isset($_GET['student_id'])) {
-        $courseId = $_GET['course_id'];
-        $studentId = $_GET['student_id'];
-        $day = date('Y-m-d');
-
-        if (Attendance::delete($courseId, $studentId, $day)){
           header('location: /index.php');
         }
       }

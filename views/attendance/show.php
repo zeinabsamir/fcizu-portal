@@ -22,6 +22,7 @@
   </table>
 <?php } else { ?>
 <a class="btn btn-primary" href="?controller=attendance&action=generateAttendance&course_id=<?= $_GET['course_id'] ?>">Generate Attendance for today</a>
+<a class="btn btn-primary" href="?controller=attendance&action=removeAttendance&course_id=<?= $_GET['course_id'] ?>">Remove Attendance for today</a>
 
 <table class="table">
   <thead>

@@ -103,17 +103,6 @@
       }
     }
 
-    public static function didAttend($courseId, $studentId, $day) {
-      $query = "SELECT * FROM attendance WHERE course_id='$courseId' AND student_id='$studentId' AND day='$day' LIMIT 1";
-      $result = mysql_query($query);
-
-      if(mysql_num_rows($result) == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
   }
 ?>
 

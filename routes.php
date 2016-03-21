@@ -35,7 +35,7 @@
 $controllers = array('application' => ['home', 'error'],
                      'users' => ['index', 'show', 'edit', 'destroy', 'login', 'register', 'logout'],
                      'courses' => ['index', 'show', 'create', 'edit', 'destroy', 'subscribe', 'unsubscribe'],
-                     'attendance' => ['index', 'show', 'generateAttendance', 'toggleAttendance']);
+                     'attendance' => ['index', 'show', 'generateAttendance', 'removeAttendance', 'toggleAttendance']);
 
 // check that the requested controller and action are both allowed in $controllers variable above
 // if someone tries to access something else he will be redirected to the error action of the application controller
