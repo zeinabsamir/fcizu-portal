@@ -6,35 +6,28 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="form-element">
-                <h3 class="text-center">Profile</h3>
+                <h3 class="text-center"><?php echo $course->title; ?></h3>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12">
               <div class="form-element form-group">
-                Email <h4><?php echo $user->email; ?></h4>
+                Code <h4><?php echo $course->code; ?></h4>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12">
               <div class="form-element form-group">
-                Full Name <h4><?php echo $user->firstName . ' ' . $user->lastName; ?></h4>
+                Faculty <h4><?php echo $course->faculty; ?></h4>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12">
               <div class="form-element form-group">
-                Faculty <h4><?php echo $user->faculty; ?></h4>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="form-element form-group">
-                Date of Birth <h4><?php echo $user->dateOfBirth; ?></h4>
+                Department <h4><?php echo $course->department; ?></h4>
               </div>
             </div>
           </div>

@@ -13,6 +13,10 @@
         require_once('models/user.php');
         $controller = new UsersController();
       break;
+      case 'courses':
+        require_once('models/course.php');
+        $controller = new CoursesController();
+      break;
     }
 
     // call the action
@@ -22,7 +26,8 @@
 // just a list of the controllers we have and their actions
 // we consider those "allowed" values
 $controllers = array('application' => ['home', 'error'],
-                     'users' => ['index', 'show', 'edit', 'destroy', 'login', 'register', 'logout']);
+                     'users' => ['index', 'show', 'edit', 'destroy', 'login', 'register', 'logout'],
+                     'courses' => ['index', 'show', 'create', 'edit', 'destroy']);
 
 // check that the requested controller and action are both allowed in $controllers variable above
 // if someone tries to access something else he will be redirected to the error action of the application controller
