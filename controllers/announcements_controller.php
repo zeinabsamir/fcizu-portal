@@ -40,15 +40,15 @@
 
         Announcement::create($content, $courseId, $teacherId);
 
-        header('location: /index.php');
+        header("location: /index.php?controller=announcements&action=show&course_id={$courseId}");
       }
     }
 
     public function destroy() {
-      if(isset($_GET['course_id']) && $_SESSION['currentUserRole'] == 'teacher') {
-        if(Announcement::delete($_GET['course_id'])) {
+      if(isset($_GET['announcement_id']) && $_SESSION['currentUserRole'] == 'teacher') {
+        if(Announcement::delete($_GET['announcement_id'])) {
           $_SESSION['notice'] = "Announcement was deleted successfully!";
-          header('location: /index.php');
+          header("location: /index.php?controller=announcements&action=show&course_id={$_GET['course_id']}");
         }
       }
     }

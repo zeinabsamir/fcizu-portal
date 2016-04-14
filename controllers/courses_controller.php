@@ -36,7 +36,7 @@
           $_SESSION['notice'] = 'Course was created successfully!';
 
           // Go to the home page
-          header('location: /index.php');
+          header("location: /index.php?controller=courses&action=index");
           exit();
         }
       }
@@ -57,14 +57,14 @@
 
           if(Course::update($course)) {
             // Redirect the course to home(index) page
-            header('location: /index.php');
+            header("location: /index.php?controller=courses&action=show&id={$course->id}");
             exit();
           }
 
         }
       } else {
-        // Redirect the course to home(index) page
-        header('location: /index.php');
+        // Redirect the course to courses (index) page
+        header("location: /index.php?controller=courses&action=index");
         exit();
       }
     }
@@ -75,7 +75,7 @@
       if(isset($_GET['id'])) {
         if(Course::delete($_GET['id'])) {
           $_SESSION['notice'] = "Course was deleted successfully!";
-          header('location: /index.php');
+          header("location: /index.php?controller=courses&action=index");
         }
       }
     }
@@ -87,15 +87,15 @@
         if($_SESSION['currentUserRole'] == 'student') {
           if(StudentCourse::create($_GET['course_id'], $_GET['user_id'])) {
             $_SESSION['notice'] = "Subscribed successfully!";
-            header('location: /index.php');
+            header("location: /index.php?controller=courses&action=index");
           }
         } else if($_SESSION['currentUserRole'] == 'teacher') {
           if(TeacherCourse::create($_GET['course_id'], $_GET['user_id'])) {
             $_SESSION['notice'] = "Subscribed successfully!";
-            header('location: /index.php');
+            header("location: /index.php?controller=courses&action=index");
           }
         } else {
-            header('location: /index.php');
+            header("location: /index.php?controller=courses&action=index");
         }
       }
     }
@@ -107,15 +107,15 @@
         if($_SESSION['currentUserRole'] == 'student') {
           if(StudentCourse::delete($_GET['course_id'], $_GET['user_id'])) {
             $_SESSION['notice'] = "Unsubscribed successfully!";
-            header('location: /index.php');
+            header("location: /index.php?controller=courses&action=index");
           }
         } else if($_SESSION['currentUserRole'] == 'teacher') {
           if(TeacherCourse::delete($_GET['course_id'], $_GET['user_id'])) {
             $_SESSION['notice'] = "Unsubscribed successfully!";
-            header('location: /index.php');
+            header("location: /index.php?controller=courses&action=index");
           }
         } else {
-            header('location: /index.php');
+            header("location: /index.php?controller=courses&action=index");
         }
       }
     }

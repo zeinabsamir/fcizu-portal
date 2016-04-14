@@ -39,16 +39,14 @@
           $user->userRole = $_POST['userRole'] ? mysql_real_escape_string($_POST['userRole']) : $user->userRole;
 
           if(User::update($user)) {
-            // Redirect the user to home(index) page
-            header('location: /index.php');
-            exit();
+            // Redirect the user to profile (show) page
+            header("location: /index.php?controller=users&action=show&id={$user->id}");
           }
 
         }
       } else {
         // Redirect the user to home(index) page
         header('location: /index.php');
-        exit();
       }
     }
 

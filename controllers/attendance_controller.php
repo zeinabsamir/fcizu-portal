@@ -47,7 +47,7 @@
           Attendance::create($courseId, $studentId, $teacherId, $day);
         }
 
-        header('location: /index.php');
+        header("location: /index.php?controller=attendance&action=show&course_id={$courseId}");
       }
     }
 
@@ -61,7 +61,7 @@
           Attendance::delete($courseId, $studentId, $day);
         }
 
-        header('location: /index.php');
+        header("location: /index.php?controller=attendance&action=show&course_id={$courseId}");
       }
     }
 
@@ -72,7 +72,7 @@
         $day = date('Y-m-d');
 
         if (Attendance::updateHasAttended($courseId, $studentId, $day)){
-          header('location: /index.php');
+          header("location: /index.php?controller=attendance&action=show&course_id={$courseId}");
         }
       }
     }

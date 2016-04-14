@@ -27,7 +27,7 @@
         </b>
         <?php if ($_SESSION['currentUserRole'] == 'teacher') { ?>
           |
-          <a href="/?controller=announcements&action=destroy&course_id=<?= $_GET['course_id'] ?>">
+          <a href="/?controller=announcements&action=destroy&announcement_id=<?= $announcement->id ?>&course_id=<?= $_GET['course_id'] ?>">
             Delete
           </a>
         <?php } ?>
