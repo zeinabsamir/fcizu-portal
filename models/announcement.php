@@ -43,8 +43,8 @@
       return $list;
     }
 
-    public static function find($courseId) {
-      $query = "SELECT * FROM announcements WHERE course_id='$courseId' LIMIT 1";
+    public static function find($announcementId) {
+      $query = "SELECT * FROM announcements WHERE id='$announcementId' LIMIT 1";
       $result = mysql_query($query);
       $announcement = mysql_fetch_array($result);
 
@@ -54,9 +54,9 @@
                               $announcement['created_at']);
     }
 
-    public static function delete($courseId) {
+    public static function delete($announcementId) {
       // Check if the record exists
-      if($announcement = Announcement::find($courseId)) {
+      if($announcement = Announcement::find($announcementId)) {
         $query = "DELETE FROM announcements WHERE id='$announcement->id'";
         if(mysql_query($query)) {
           return true;
