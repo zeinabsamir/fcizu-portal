@@ -4,7 +4,7 @@
 
 <?php if ($_SESSION['currentUserRole'] == 'teacher') { ?>
   <div class="text-center">
-    <form action="/?controller=announcements&action=create&course_id=1" method="post" class="form-inline">
+    <form action="/?controller=announcements&action=create&course_id=<?= $_GET['course_id'] ?>" method="post" class="form-inline">
       <div class="form-element form-group">
         <textarea type="text" name="content" class="form-control" cols="50" placeholder="Add New Announcement ..."></textarea>
       </div>
@@ -24,7 +24,14 @@
       <b>
         <?= UsersHelper::fullName($announcement->teacherId) ?> &middot;
         <?= date_format(date_create($announcement->createdAt), "Y/m/d h:i a") ?>
-      </b>
+        </b>
+        <?php if ($_SESSION['currentUserRole'] == 'teacher') { ?>
+          |
+          <a href="/?controller=announcements&action=destroy&course_id=<?= $_GET['course_id'] ?>">
+            Delete
+          </a>
+        <?php } ?>
+
       <p>
         <?= $announcement->content ?>
       </p>

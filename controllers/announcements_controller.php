@@ -43,5 +43,14 @@
         header('location: /index.php');
       }
     }
+
+    public function destroy() {
+      if(isset($_GET['course_id']) && $_SESSION['currentUserRole'] == 'teacher') {
+        if(Announcement::delete($_GET['course_id'])) {
+          $_SESSION['notice'] = "Announcement was deleted successfully!";
+          header('location: /index.php');
+        }
+      }
+    }
   }
 ?>
