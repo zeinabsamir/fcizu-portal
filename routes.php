@@ -1,10 +1,13 @@
 <?php
   function call($controller, $action) {
-    // require the file that matches the controller name from controllers/ folder
-    require_once('controllers/' . $controller . '_controller.php');
-
     // require all the models to the whole application
     require_once('models/application.php');
+
+    // require all the helpers to the application
+    require_once('helpers/application_helper.php');
+
+    // require the file that matches the controller name from controllers/ folder
+    require_once('controllers/' . $controller . '_controller.php');
 
     // create a new instance of the needed controller
     switch($controller) {
@@ -24,10 +27,10 @@
       case 'announcements':
         $controller = new AnnouncementsController();
         break;
+      case 'materials':
+        $controller = new MaterialsController();
+        break;
     }
-
-    // require all the helpers to the application
-    require_once('helpers/application_helper.php');
 
     // call the action
     $controller->{ $action }();
@@ -39,7 +42,8 @@ $controllers = array('application' => ['home', 'error'],
                      'users' => ['index', 'show', 'edit', 'destroy', 'login', 'register', 'logout'],
                      'courses' => ['index', 'show', 'create', 'edit', 'destroy', 'subscribe', 'unsubscribe'],
                      'attendance' => ['index', 'show', 'generateAttendance', 'removeAttendance', 'toggleAttendance'],
-                     'announcements' => ['index', 'show', 'create', 'destroy']);
+                     'announcements' => ['index', 'show', 'create', 'destroy'],
+                     'materials' => ['index', 'show', 'create', 'destroy', 'download']);
 
 // check that the requested controller and action are both allowed in $controllers variable above
 // if someone tries to access something else he will be redirected to the error action of the application controller

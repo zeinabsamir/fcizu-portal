@@ -5,4 +5,5 @@
   require_once('teacher_course.php');
   require_once('attendance.php');
   require_once('announcement.php');
+  require_once('material.php');
 ?>
