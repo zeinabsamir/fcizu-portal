@@ -67,14 +67,14 @@ CREATE TABLE announcements (
 
 CREATE TABLE grades (
                         id INT(11) NOT NULL AUTO_INCREMENT,
-                        content TEXT NOT NULL,
                         course_id INT(11) NOT NULL,
                         student_id INT(11) NOT NULL,
                         teacher_id INT(11) NOT NULL,
+                        title VARCHAR(255) NOT NULL,
                         grade DECIMAL(7,2) NOT NULL DEFAULT 99999.99,
-                        element_name VARCHAR(150) NOT NULL,
                         created_at DATETIME NOT NULL,
-                        PRIMARY KEY (id)
+                        PRIMARY KEY (id),
+                        UNIQUE KEY course_student_title (course_id, student_id, title)
                         );
 
 CREATE TABLE student_gpas (

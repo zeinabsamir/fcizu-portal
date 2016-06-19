@@ -6,4 +6,5 @@
   require_once('attendance.php');
   require_once('announcement.php');
   require_once('material.php');
+  require_once('grade.php');
 ?>

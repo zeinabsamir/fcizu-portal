@@ -18,6 +18,7 @@
 <!-- HEADER-->
 
 <!-- NOTICE -->
+<br>
 <?php require_once('views/partials/notice.php'); ?>
 <!-- NOTICE -->
 
