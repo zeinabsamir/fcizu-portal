@@ -33,6 +33,9 @@
       case 'grades':
         $controller = new GradesController();
         break;
+      case 'assignments':
+        $controller = new AssignmentsController();
+        break;
     }
 
     // call the action
@@ -47,7 +50,8 @@ $controllers = array('application' => ['home', 'error'],
                      'attendance' => ['index', 'show', 'generateAttendance', 'removeAttendance', 'toggleAttendance'],
                      'announcements' => ['index', 'show', 'create', 'destroy'],
                      'materials' => ['index', 'show', 'create', 'destroy', 'download'],
-                     'grades' => ['index', 'show', 'generateGrades', 'removeGrades', 'edit']);
+                     'grades' => ['index', 'show', 'generateGrades', 'removeGrades', 'edit'],
+                     'assignments' => ['index', 'show', 'create', 'destroy', 'download']);
 
 // check that the requested controller and action are both allowed in $controllers variable above
 // if someone tries to access something else he will be redirected to the error action of the application controller

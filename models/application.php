@@ -7,4 +7,5 @@
   require_once('announcement.php');
   require_once('material.php');
   require_once('grade.php');
+  require_once('assignment.php');
 ?>

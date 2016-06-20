@@ -99,8 +99,8 @@ CREATE TABLE course_assignments (
                         id INT(11) NOT NULL AUTO_INCREMENT,
                         course_id INT(11) NOT NULL,
                         student_id INT(11) NOT NULL,
+                        description TEXT,
                         file_url VARCHAR(255),
-                        element_name VARCHAR(150) NOT NULL,
                         created_at DATETIME NOT NULL,
                         PRIMARY KEY (id)
                         );
