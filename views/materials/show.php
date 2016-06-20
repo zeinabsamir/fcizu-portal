@@ -31,11 +31,11 @@
         <?= UsersHelper::fullName($material->teacherId) ?> &middot;
         <?= date_format(date_create($material->createdAt), "Y/m/d h:i a") ?>
         </b>
-        <?php if ($_SESSION['currentUserRole'] == 'teacher') { ?>
           |
           <a href="/?controller=materials&action=download&material_id=<?= $material->id ?>">
             Download
           </a>
+        <?php if ($_SESSION['currentUserRole'] == 'teacher') { ?>
           |
           <a href="/?controller=materials&action=destroy&material_id=<?= $material->id ?>&course_id=<?= $_GET['course_id'] ?>">
             Delete
