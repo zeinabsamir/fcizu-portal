@@ -3,7 +3,7 @@
     public static function upload_file($fieldName, $targetDir) {
       // check and create if the target folder does not exist
       if (!file_exists($targetDir)) {
-          mkdir($targetDir, 0755, true);
+          mkdir($targetDir, 0777, true);
       }
 
       if (!empty($_FILES["$fieldName"]["name"])) {
@@ -20,7 +20,7 @@
     // Add timestamp to the uploaded file name to make it unique
     public static function upload_file_fancy($fieldName, $targetDir) {
       if (!file_exists($targetDir)) {
-          mkdir($targetDir, 0755, true);
+          mkdir($targetDir, 0777, true);
       }
 
       if (!empty($_FILES["$fieldName"]["name"])) {
