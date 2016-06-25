@@ -24,6 +24,12 @@
     // Create a course using Course::create() method from the model
     // /?controller=courses&action=create
     public function create() {
+      if(!UsersHelper::isAdmin()) {
+        $_SESSION['notice'] = 'You don\'t have the permission to create courses!';
+        header("location: /index.php?controller=courses&action=index");
+        exit();
+      }
+
       require_once('views/courses/create.php');
 
       if(isset($_POST['createCourseSubmit'])) {
@@ -45,6 +51,12 @@
     // edit course using Course::update()
     // /?controller=courses&action=edit&id=x
     public function edit() {
+      if(!UsersHelper::isAdmin()) {
+        $_SESSION['notice'] = 'You don\'t have the permission to edit courses!';
+        header("location: /index.php?controller=courses&action=index");
+        exit();
+      }
+
       if(isset($_GET['id'])) {
         $course = Course::find($_GET['id']);
 
@@ -72,6 +84,12 @@
     // Delete course using Course::delete()
     // /?controller=courses&action=destroy&id=x
     public function destroy() {
+      if(!UsersHelper::isAdmin()) {
+        $_SESSION['notice'] = 'You don\'t have the permission to delete courses!';
+        header("location: /index.php?controller=courses&action=index");
+        exit();
+      }
+
       if(isset($_GET['id'])) {
         if(Course::delete($_GET['id'])) {
           $_SESSION['notice'] = "Course was deleted successfully!";

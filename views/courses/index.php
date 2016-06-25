@@ -23,9 +23,12 @@
             <a href="?controller=courses&action=subscribe&course_id=<?php echo $course->id; ?>&user_id=<?php echo $_SESSION['currentUserID']; ?>">Subscribe</a>
           <?php } ?> |
 
-          <a href='?controller=courses&action=show&id=<?php echo $course->id; ?>'>Show</a> |
-          <a href="?controller=courses&action=edit&id=<?php echo $course->id ?>">Edit</a> |
-          <a href='?controller=courses&action=destroy&id=<?php echo $course->id; ?>'>Delete</a>
+          <a href='?controller=courses&action=show&id=<?php echo $course->id; ?>'>Show</a>
+          <?php if(UsersHelper::isAdmin()) { ?>
+            |
+            <a href="?controller=courses&action=edit&id=<?php echo $course->id ?>">Edit</a> |
+            <a href='?controller=courses&action=destroy&id=<?php echo $course->id; ?>'>Delete</a>
+          <?php } ?>
         </td>
       </tr>
     <?php } ?>

@@ -5,6 +5,12 @@
     // We grab the list of users using User::all() method
     // /?controller=user&action=index
     public function index() {
+      if(!UsersHelper::isAdmin()) {
+        $_SESSION['notice'] = 'You don\'t have the permission to view users!';
+        header('location: /index.php');
+        exit();
+      }
+
       $users = User::all();
 
       require_once('views/users/index.php');
@@ -17,14 +23,16 @@
         return call('pages', 'error');
 
       // we use the given id to get the right user
-      $user = User::find($_GET['id']);
-      require_once('views/users/show.php');
+      if($_GET['id'] == $_SESSION['currentUserID']) {
+        $user = User::find($_GET['id']);
+        require_once('views/users/show.php');
+      }
     }
 
     // edit user using User::update()
     // /?controller=user&action=edit&id=x
     public function edit() {
-      if(isset($_GET['id'])) {
+      if(isset($_GET['id']) && $_GET['id'] == $_SESSION['currentUserID']) {
         $user = User::find($_GET['id']);
 
         require_once('views/users/edit.php');
@@ -53,6 +61,12 @@
     // Delete user using User::delete()
     // /?controller=user&action=destroy&id=x
     public function destroy() {
+      if(!UsersHelper::isAdmin()) {
+        $_SESSION['notice'] = 'You don\'t have the permission to delete users!';
+        header("location: /index.php?controller=users&action=index");
+        exit();
+      }
+
       if(isset($_GET['id'])) {
         if(User::delete($_GET['id'])) {
           $_SESSION['notice'] = "User was deleted successfully!";

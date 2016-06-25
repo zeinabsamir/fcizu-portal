@@ -8,16 +8,25 @@ $query = "INSERT INTO users (email, first_name, last_name, password, department,
 if(mysql_query($query, $connection)) {
   echo "Teacher User was created.\n";
 } else {
-  echo "Student User error: ".mysql_error()."\n";
+  echo "Teacher User error: ".mysql_error()."\n";
 }
 
 $query = "INSERT INTO users (email, first_name, last_name, password, department, date_of_birth, user_role, is_admin, created_at)
           VALUES ('zeinab.samir@fci.zu.edu.eg', 'Zeinab', 'Samir', '12345678', 'Computer Science', '1994-8-9', 'student', '0', now())";
 
 if(mysql_query($query, $connection)) {
-  echo "Teacher User was created.\n";
+  echo "Student User was created.\n";
 } else {
-  echo "Teacher User error: ".mysql_error()."\n";
+  echo "Student User error: ".mysql_error()."\n";
+}
+
+$query = "INSERT INTO users (email, first_name, last_name, password, department, date_of_birth, user_role, is_admin, created_at)
+          VALUES ('admin@fci.zu.edu.eg', 'System', 'Admin', '12345678', 'Computer Science', '1977-11-5', 'teacher', '1', now())";
+
+if(mysql_query($query, $connection)) {
+  echo "Admin User was created.\n";
+} else {
+  echo "Admin User error: ".mysql_error()."\n";
 }
 
 // courses
