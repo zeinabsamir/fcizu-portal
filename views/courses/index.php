@@ -1,5 +1,9 @@
 <h1>Listing Courses</h1>
 
+<?php if(UsersHelper::isAdmin()) { ?>
+  <a class="btn btn-primary" href="?controller=courses&action=create ?>">Add New Course</a>
+<?php } ?>
+
 <table class="table">
   <thead>
     <tr>
