@@ -14,7 +14,7 @@
     // /?controller=courses&action=show&id=x
     public function show() {
       if (!isset($_GET['id']))
-        return call('pages', 'error');
+        return call('application', 'error');
 
       // we use the given id to get the right course
       $course = Course::find($_GET['id']);
