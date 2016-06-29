@@ -9,8 +9,8 @@
 
 <table class="table">
   <thead>
+    <?php if(UsersHelper::isAdmin()) { ?>
     <tr>
-      <?php if(UsersHelper::isAdmin()){ ?>
       <th>Id</th>
       <?php } ?>
       <th>Title</th>
