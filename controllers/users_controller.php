@@ -79,7 +79,6 @@
     // /?controller=user&action=register
     public function register() {
       require_once('views/users/register.php');
-
       if(isset($_POST['registerSubmit'])) {
         $email = mysql_real_escape_string($_POST['email']);
         $password = mysql_real_escape_string($_POST['password']);
@@ -88,6 +87,16 @@
         $department = mysql_real_escape_string($_POST['department']);
         $dateOfBirth = mysql_real_escape_string($_POST['dateOfBirth']);
         $userRole = mysql_real_escape_string($_POST['userRole']);
+
+        if($userRole == 'teacher') {
+          $teacherCode = mysql_real_escape_string($_POST['teacherCode']);
+
+          if(!UsersHelper::checkTeacherCode($teacherCode)) {
+            $_SESSION['notice'] = 'Teacher is cannot be verified!';
+            header('location: /index.php');
+            exit();
+          }
+        }
 
         // Create the user
         if($user = User::create($email, $password, $firstName, $lastName, $department, $dateOfBirth, $userRole)) {

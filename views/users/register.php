@@ -55,7 +55,7 @@
           <div class="row">
             <div class="col-lg-12 ">
               <div class="form-element form-group">
-                <div class="btn-group" data-toggle="buttons">
+                <div id="chooseRole" class="btn-group" data-toggle="buttons">
                   <label class="btn btn-default active">
                     <input type="radio" name="userRole" value="student" checked> Student
                   </label>
@@ -63,6 +63,13 @@
                     <input type="radio" name="userRole" value="teacher"> Teacher
                   </label>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div hidden id="teacherVerifier" class="row">
+            <div class="col-lg-12">
+              <div class="form-element form-group">
+                <input type="text" name="teacherCode" class="form-control" placeholder="Teacher Code">
               </div>
             </div>
           </div>
@@ -78,3 +85,14 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#chooseRole :input").change(function() {
+      var choosenRole = $(this).val();
+      if(choosenRole === 'teacher') {
+        $("#teacherVerifier").show();
+      } else {
+        $("#teacherVerifier").hide();
+      }
+  });
+</script>

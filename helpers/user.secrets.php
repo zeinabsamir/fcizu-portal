@@ -1,0 +1,3 @@
+<?php
+$teacherVerifier = "124@";
+?>

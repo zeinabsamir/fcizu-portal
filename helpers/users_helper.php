@@ -13,5 +13,15 @@
         return false;
       }
     }
+
+    public static function checkTeacherCode($code) {
+      require_once("user.secrets.php");
+
+      if($teacherVerifier == $code) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 ?>
