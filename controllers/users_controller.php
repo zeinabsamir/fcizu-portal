@@ -93,19 +93,20 @@
 
           if(!UsersHelper::checkTeacherCode($teacherCode)) {
             $_SESSION['notice'] = 'Teacher is cannot be verified!';
-              header('location: /index.php?controller=users&action=register');
+              header('location: /index.php');
             exit();
           }
-        }
+        
 
         // Create the user
         if($user = User::create($email, $password, $firstName, $lastName, $department, $dateOfBirth, $userRole)) {
           $_SESSION['notice'] = 'User was created successfully!';
 
           // Go to the home page
-          header('location: /index.php?controller=users&action=register');
+          header('location: /index.php');
           exit();
         }
+      }
       }
     }
 
