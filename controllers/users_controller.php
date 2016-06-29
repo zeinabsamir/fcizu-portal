@@ -70,7 +70,7 @@
       if(isset($_GET['id'])) {
         if(User::delete($_GET['id'])) {
           $_SESSION['notice'] = "User was deleted successfully!";
-          header("location: /index.php");
+          header('location: /index.php');
         }
       }
     }
@@ -93,7 +93,7 @@
 
           if(!UsersHelper::checkTeacherCode($teacherCode)) {
             $_SESSION['notice'] = 'Teacher is cannot be verified!';
-              header("location: /index.php");
+              header('location: /index.php');
             exit();
           }
         }
@@ -104,7 +104,7 @@
           $_SESSION['notice'] = 'User was created successfully!';
 
           // Go to the home page
-          header("location: /index.php");
+          header('location: /index.php');
           exit();
         }
       }
