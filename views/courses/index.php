@@ -10,7 +10,9 @@
 <table class="table">
   <thead>
     <tr>
+      <?php if(UsersHelper::isAdmin()) { ?>
       <th>Id</th>
+      <?php } ?>
       <th>Title</th>
       <th>Code</th>
       <th>Actions</th>
@@ -20,7 +22,9 @@
   <tbody>
     <?php foreach($courses as $course) { ?>
       <tr>
+        <?php if(UsersHelper::isAdmin()) { ?>
         <td><?php echo $course->id; ?></td>
+        <?php } ?>
         <td><?php echo $course->title; ?></td>
         <td><?php echo $course->code; ?></td>
         <td>
