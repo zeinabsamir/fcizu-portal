@@ -92,7 +92,7 @@
           $teacherCode = mysql_real_escape_string($_POST['teacherCode']);
 
           if(!UsersHelper::checkTeacherCode($teacherCode)) {
-            header('location: /index.php');
+           // header('location: /index.php');
             $_SESSION['notice'] = 'Teacher is cannot be verified!';
             exit();
           }
@@ -103,7 +103,7 @@
           $_SESSION['notice'] = 'User was created successfully!';
 
           // Go to the home page
-          header('location: /index.php');
+         // header('location: /index.php');
           exit();
         }
       }
