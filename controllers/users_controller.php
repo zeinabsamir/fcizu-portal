@@ -92,8 +92,8 @@
           $teacherCode = mysql_real_escape_string($_POST['teacherCode']);
 
           if(!UsersHelper::checkTeacherCode($teacherCode)) {
-            $_SESSION['notice'] = 'Teacher is cannot be verified!';
             header('location: /index.php');
+            $_SESSION['notice'] = 'Teacher is cannot be verified!';
             exit();
           }
         }
