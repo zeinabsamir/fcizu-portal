@@ -2,14 +2,13 @@
 
 <?php if(UsersHelper::isAdmin()) { ?>
   <a class="btn btn-primary" href="?controller=courses&action=create">Add New Course</a>
-<?php } ?>
+
 
 <br>
 <br>
 
 <table class="table">
   <thead>
-    <?php if(UsersHelper::isAdmin()) { ?>
     <tr>
       <th>Id</th>
       <?php } ?>
