@@ -21,6 +21,12 @@
     public function show() {
       if (!isset($_GET['id']))
         return call('application', 'error');
+      
+      if(UsersHelper::isAdmin()){
+          $user = User::find($_GET['id']);
+          require_once('views/users/show.php');
+      }
+         
 
       // we use the given id to get the right user
       if($_GET['id'] == $_SESSION['currentUserID']) {
