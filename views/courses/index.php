@@ -10,7 +10,9 @@
 <table class="table">
   <thead>
     <tr>
+      <?php if(UsersHelper::isAdmin()){ ?>
       <th>Id</th>
+      <?php } ?>
       <th>Title</th>
       <th>Code</th>
       <th>Actions</th>
