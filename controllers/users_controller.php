@@ -33,7 +33,7 @@
     // edit user using User::update()
     // /?controller=user&action=edit&id=x
     public function edit() {
-      if(isset($_GET['id']) && $_GET['id'] == $_SESSION['currentUserID']) {
+      if((isset($_GET['id']) && $_GET['id'] == $_SESSION['currentUserID'])||UsersHelper::isAdmin()) {
         $user = User::find($_GET['id']);
 
         require_once('views/users/edit.php');
