@@ -94,7 +94,7 @@
           if(!UsersHelper::checkTeacherCode($teacherCode)) {
             $_SESSION['notice'] = 'Teacher is cannot be verified!';
               header('location: /index.php');
-          //  exit();
+            exit();
           }
         }
         
@@ -105,7 +105,7 @@
 
           // Go to the home page
           header('location: /index.php');
-         // exit();
+          exit();
         }
       }
       
