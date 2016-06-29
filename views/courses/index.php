@@ -2,7 +2,7 @@
 
 <?php if(UsersHelper::isAdmin()) { ?>
   <a class="btn btn-primary" href="?controller=courses&action=create">Add New Course</a>
-
+<?php } ?>
 
 <br>
 <br>
@@ -11,7 +11,6 @@
   <thead>
     <tr>
       <th>Id</th>
-      <?php } ?>
       <th>Title</th>
       <th>Code</th>
       <th>Actions</th>
